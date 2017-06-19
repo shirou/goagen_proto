@@ -13,18 +13,18 @@ service UserService {
   rpc List(Empty) returns (stream User);
 }
 message UserCreateType {
-  string type_ = 1; // type of user
-  uint32 age = 2; // age
-  string email = 3; // email
+  uint32 age = 1; // age
+  string email = 2; // email
+  string name = 3; // name
   string sex = 4; // sex
-  string name = 5; // name
+  string type_ = 5; // type of user
 }
 message UserGetType {
   int32 userID = 1; // ID of user
 }
 message User {
-  string email = 1; // email
-  uint32 age = 2; // age
-  string sex = 3; // sex
-  string name = 4; // name
+  string name = 1; // name
+  string email = 2; // email
+  uint32 age = 3; // age
+  string sex = 4; // sex
 }

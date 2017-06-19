@@ -98,6 +98,8 @@ func parseAction(action *design.ActionDefinition, responses map[string]Response)
 		}
 	}
 
+	sort.Sort(AlphabeticalName(ret.Query))
+
 	ret.Response = getResponse(action, responses)
 
 	return ret, nil
@@ -296,6 +298,12 @@ func (p Param) EnumField() string {
 }
 
 type Params []Param
+
+type AlphabeticalName []Param
+
+func (a AlphabeticalName) Len() int           { return len(a) }
+func (a AlphabeticalName) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a AlphabeticalName) Less(i, j int) bool { return a[i].Name < a[j].Name }
 
 func newParam(action *design.ActionDefinition, a string, att *design.AttributeDefinition) Param {
 	p := Param{
