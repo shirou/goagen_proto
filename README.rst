@@ -1,7 +1,7 @@
 goagen proto
 ====================
 
-This package provides a `goa <https://goa.design/>`_ generator for a grpc protocol buffer.
+This package provides a `goa <https://goa.design/>`_ generator for gRPC.
 
 Status
 ------------------
@@ -10,23 +10,24 @@ Very alpha. you can not use in the production.
 
 - Enum is not work
 - Required is not work
+- Message field order is alphabetical. Should set explicit "Order"?
 
 How to generate proto from your design
 ---------------------------------------------
 
-At first, you have to do `go get`
+At first, you have to do *go get*
 
 ::
 
   % go get github.com/shirou/goagen_proto
 
-Then, you can `goagen gen` with your design.
+Then, you can **goagen gen** with your design.
 
 ::
 
   % goagen gen --pkg-path=github.com/shirou/goagen_proto -d github.com/some/your/great/design
 
-`api.proto` file will be generated.
+**api.proto** file will be generated.
 
 
 Type Definition
@@ -34,7 +35,7 @@ Type Definition
 
 protobuf has a valious kind of types. But goa can not specify the type.
 
-You can set `Metadata("struct:field:grpctype")` to specify type like this.
+You can set **Metadata("struct:field:grpctype")** to specify type like this.
 
 ::
 
