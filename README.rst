@@ -18,7 +18,7 @@ At first, you have to do `go get`
 
 ::
 
-  % go get github.com/shirou/goagen_js
+  % go get github.com/shirou/goagen_proto
 
 Then, you can `goagen gen` with your design.
 
