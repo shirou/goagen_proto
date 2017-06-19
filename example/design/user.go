@@ -48,12 +48,6 @@ var _ = Resource("user", func() {
 
 	Action("list", func() {
 		Routing(GET(""))
-		Params(func() {
-			Param("Limit", Integer, "limit", func() {
-				Default(100)
-			})
-		})
-
 		Response(OK, func() {
 			Media(CollectionOf(User))
 		})

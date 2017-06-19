@@ -176,7 +176,7 @@ func (p RPCDefinition) FuncName() string {
 }
 func (p RPCDefinition) RequestName() string {
 	if len(p.Query) == 0 {
-		return ""
+		return "Empty"
 	}
 	return codegen.Goify(p.Action.Parent.Name, true) + p.Name + "Type"
 }
@@ -273,7 +273,14 @@ func (p Param) MessageField(i int) string {
 	if len(p.Enum) > 0 {
 		buf = p.EnumField()
 	}
-	return buf + fmt.Sprintf("%s %s = %d;", p.Kind, p.Name, i)
+	buf += fmt.Sprintf("%s %s = %d;", p.Kind, p.Name, i)
+
+	if p.Description != "" {
+		buf += " // " + p.Description
+	}
+
+	return buf
+
 }
 
 func (p Param) EnumField() string {

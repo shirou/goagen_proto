@@ -21,7 +21,7 @@ func (us *userService) Get(c context.Context, p *pb.UserGetType) (*pb.User, erro
 	return us.users[0], nil
 }
 
-func (us *userService) List(p *pb.UserListType, stream pb.UserService_ListServer) error {
+func (us *userService) List(p *pb.Empty, stream pb.UserService_ListServer) error {
 	us.m.Lock()
 	defer us.m.Unlock()
 	for _, p := range us.users {

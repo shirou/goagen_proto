@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -166,7 +165,8 @@ func (g *Generator) generateMessages(buf *bufio.Writer, tmpl *template.Template,
 	for _, service := range services {
 		for _, p := range service.RPCs {
 			if len(p.Query) == 0 {
-				log.Fatalf("At least one paramter is required: %s, %s", service.ServiceName(), p.Name)
+				// use Empty message
+				continue
 			}
 			data := map[string]interface{}{
 				"Name":       p.RequestName(),

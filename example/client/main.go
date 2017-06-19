@@ -35,7 +35,7 @@ func list() error {
 	defer conn.Close()
 	client := pb.NewUserServiceClient(conn)
 
-	stream, err := client.List(context.Background(), &pb.UserListType{})
+	stream, err := client.List(context.Background(), &pb.Empty{})
 	if err != nil {
 		return err
 	}

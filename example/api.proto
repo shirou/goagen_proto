@@ -10,24 +10,21 @@ service FilesService {
 service UserService {
   rpc Create(UserCreateType) returns (Empty);
   rpc Get(UserGetType) returns (User);
-  rpc List(UserListType) returns (stream User);
+  rpc List(Empty) returns (stream User);
 }
 message UserCreateType {
-  string type_ = 1;
-  string name = 2;
-  uint32 age = 3;
-  string email = 4;
-  string sex = 5;
+  string type_ = 1; // type of user
+  string email = 2; // email
+  string sex = 3; // sex
+  string name = 4; // name
+  uint32 age = 5; // age
 }
 message UserGetType {
-  int32 userID = 1;
+  int32 userID = 1; // ID of user
 }
 message User {
-  string name = 1;
-  string email = 2;
-  uint32 age = 3;
-  string sex = 4;
-}
-message UserListType {
-  int32 limit = 1;
+  string name = 1; // name
+  string email = 2; // email
+  uint32 age = 3; // age
+  string sex = 4; // sex
 }
