@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package proto;
+
+message Empty {
+}
+
+service FilesService {
+}
+service UserService {
+  rpc Create(UserCreateType) returns (Empty);
+  rpc Get(UserGetType) returns (User);
+  rpc List(UserListType) returns (stream User);
+}
+message UserCreateType {
+  string type_ = 1;
+  string name = 2;
+  uint32 age = 3;
+  string email = 4;
+  string sex = 5;
+}
+message UserGetType {
+  int32 userID = 1;
+}
+message User {
+  string name = 1;
+  string email = 2;
+  uint32 age = 3;
+  string sex = 4;
+}
+message UserListType {
+  int32 limit = 1;
+}
