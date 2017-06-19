@@ -10,6 +10,7 @@ Very alpha. you can not use in the production.
 
 - Enum is not work
 - Required is not work
+- Nested type is not work
 - Message field order is alphabetical. Should set explicit "Order"?
 
 How to generate proto from your design

@@ -14,17 +14,17 @@ service UserService {
 }
 message UserCreateType {
   string type_ = 1; // type of user
-  string email = 2; // email
-  string sex = 3; // sex
-  string name = 4; // name
-  uint32 age = 5; // age
+  uint32 age = 2; // age
+  string email = 3; // email
+  string sex = 4; // sex
+  string name = 5; // name
 }
 message UserGetType {
   int32 userID = 1; // ID of user
 }
 message User {
-  string name = 1; // name
-  string email = 2; // email
-  uint32 age = 3; // age
-  string sex = 4; // sex
+  string email = 1; // email
+  uint32 age = 2; // age
+  string sex = 3; // sex
+  string name = 4; // name
 }
