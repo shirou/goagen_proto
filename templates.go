@@ -28,8 +28,8 @@ syntax = "proto3";
 
 package proto;
 
-message Empty {
-}
+
+message Empty {} // You can switch to use google.protobuf.Empty
 
 {{ end }}
 `

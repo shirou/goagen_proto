@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package proto;
 
-message Empty {
-}
+
+message Empty {} // You can switch to use google.protobuf.Empty
 
 service FilesService {
 }
@@ -23,8 +23,8 @@ message UserGetType {
   int32 userID = 1; // ID of user
 }
 message User {
-  string name = 1; // name
-  string email = 2; // email
-  uint32 age = 3; // age
-  string sex = 4; // sex
+  uint32 age = 1; // age
+  string sex = 2; // sex
+  string name = 3; // name
+  string email = 4; // email
 }
