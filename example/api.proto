@@ -24,7 +24,7 @@ message UserGetType {
 }
 message User {
   uint32 age = 1; // age
-  string sex = 2; // sex
+  string email = 2; // email
   string name = 3; // name
-  string email = 4; // email
+  string sex = 4; // sex
 }

@@ -125,6 +125,9 @@ func parseMediaTypes(g *Generator) (map[string]Response, error) {
 				params = append(params, p)
 			}
 			id, stream := toIdentifierName(mt.Identifier)
+
+			sort.Sort(AlphabeticalName(params))
+
 			ret[mt.Identifier] = Response{
 				Identifier:     mt.Identifier,
 				IdentifierName: id,
@@ -208,6 +211,7 @@ func (p RPCDefinition) ResponseDefinition() []string {
 	if p.Response.Params == nil {
 		return []string{}
 	}
+
 	for i, tmp := range p.Response.Params {
 		i = i + 1 // start from 1,
 		buf = append(buf, tmp.MessageField(i))
