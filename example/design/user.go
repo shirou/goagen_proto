@@ -73,7 +73,7 @@ var _ = Resource("user", func() {
 			Param("Type", String, "type of user", func() {
 				Enum("normal", "admin")
 			})
-			Required("UserID")
+			Required("Type")
 		})
 		Payload(UserCreatePayload, func() {
 			Example(map[string]interface{}{

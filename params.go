@@ -75,26 +75,25 @@ func parseAction(action *design.ActionDefinition, responses map[string]Response)
 		Name:   name,
 		Query:  make(Params, 0),
 	}
-
 	if action.PathParams() != nil {
-		m := action.PathParams().Type.ToObject()
-		for a, att := range m {
-			ret.Query = append(ret.Query, newParam(action, a, att))
+		m := action.PathParams()
+		for a, att := range m.Type.ToObject() {
+			ret.Query = append(ret.Query, newParam(action, a, att, m.IsRequired(a)))
 		}
 	}
 
 	if action.QueryParams != nil {
-		m := action.QueryParams.Type.ToObject()
-		for a, att := range m {
-			ret.Query = append(ret.Query, newParam(action, a, att))
+		m := action.QueryParams
+		for a, att := range m.Type.ToObject() {
+			ret.Query = append(ret.Query, newParam(action, a, att, m.IsRequired(a)))
 		}
 	}
 
 	// Payload and Query are stored same Query field.
 	if action.Payload != nil {
-		m := action.Payload.Type.ToObject()
-		for a, att := range m {
-			ret.Query = append(ret.Query, newParam(action, a, att))
+		m := action.Payload
+		for a, att := range m.Type.ToObject() {
+			ret.Query = append(ret.Query, newParam(action, a, att, m.IsRequired(a)))
 		}
 	}
 
@@ -271,6 +270,7 @@ type Param struct {
 	Kind          string // kind such as bool, number, ...
 	Description   string
 	Enum          []string // Enum
+	Required      bool
 	Repeat        bool
 }
 
@@ -309,7 +309,7 @@ func (a AlphabeticalName) Len() int           { return len(a) }
 func (a AlphabeticalName) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a AlphabeticalName) Less(i, j int) bool { return a[i].Name < a[j].Name }
 
-func newParam(action *design.ActionDefinition, a string, att *design.AttributeDefinition) Param {
+func newParam(action *design.ActionDefinition, a string, att *design.AttributeDefinition, required bool) Param {
 	p := Param{
 		original:      att,
 		Name:          codegen.Goify(a, false),
@@ -317,6 +317,7 @@ func newParam(action *design.ActionDefinition, a string, att *design.AttributeDe
 		Kind:          convertTypeString(att),
 		Repeat:        repeatable(att.Type.Kind()),
 		Description:   att.Description,
+		Required:      required,
 	}
 
 	if att.Validation != nil && att.Validation.Values != nil {
